@@ -3,8 +3,14 @@ import { createGlobalStyle } from "styled-components";
 export const theme = {
     colors: {
         primary: "#C3B8FF",
-        secondary: "#9384DE",
-        third: "#091236"
+        second: "#9384DE",
+        third: "#091236",
+        fourth: "#E17474",
+        fifth: "#A13535",
+        sixth: "#26315E",
+        seventh: "#323E6D",
+        eighth: "#636D95",
+        white: "#ffffff",
     },
     fonts: {
         primary: "Roboto, sans-serif"
@@ -19,7 +25,6 @@ export const theme = {
 };
 
 export const GlobalStyle = createGlobalStyle`
-
     *{
         padding: 0;
         margin: 0;
@@ -27,7 +32,6 @@ export const GlobalStyle = createGlobalStyle`
     }
     
     html{
-        @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
         font-size: 10px;       
     }
     

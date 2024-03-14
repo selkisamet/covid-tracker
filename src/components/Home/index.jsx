@@ -1,12 +1,15 @@
 import React from "react";
-import TabBar from "./UI/TabBar/TabBar";
+import TabBar from "../UI/TabBar/TabBar";
+import Container from "../UI/Container/Container";
+import TabContent from "../UI/TabContent/TabContent";
 
 const Home = () => {
     return (
-        <div>
+        <Container>
             {/* TabBar Component */}
-            <TabBar />
-        </div>
+            < TabBar />
+            <TabContent selectedItem="map" />
+        </Container>
     )
 }
 
