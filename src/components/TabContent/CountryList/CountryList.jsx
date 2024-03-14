@@ -79,11 +79,15 @@ const ListWrapStyle = styled.div`
 `;
 
 const ListCardStyle = styled.div`
-   height: calc(100vh - 20rem);
    max-width: clamp(90rem, 5vw, 90rem);
+   height: 100%;
    width: 100%;
    background-color: ${({ theme }) => theme.colors.sixth};
    border-radius: 2rem;
+   padding: 2rem 0;
+   display: flex;
+   flex-direction: column;
+   gap: 3rem;
 `;
 
 const SearchWrap = styled.div`
@@ -91,7 +95,6 @@ const SearchWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem 0;
 `;
 
 const InputWrapStyle = styled.div`
@@ -150,13 +153,13 @@ const TableHeaderStyle = styled.div`
 
 const HeadItemStyle = styled.div`
     color: ${({ theme }) => theme.colors.primary};
-    font-weight: ${({ theme }) => theme.fontWeights.bold};
+    font-weight: ${({ theme }) => theme.fontWeights.medium};
     flex: 1;
     text-align: center;
 
        &:first-child{
         flex: 0.7;
-        padding-right: 2rem;
+        /* padding-right: 2rem; */
     }
 `;
 
@@ -164,7 +167,7 @@ const RowItemStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 4rem;
+    padding: 1rem clamp(2rem, 4vw, 4rem);
     gap: 1rem;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -178,10 +181,11 @@ const RowColStyle = styled.div`
     color: ${({ theme }) => theme.colors.primary};
     flex: 1;
     text-align: center;
+    font-weight: ${({ theme }) => theme.fontWeights.light};
 
     &:first-child{
         flex: 0.7;
-        padding-right: 2rem;
+        /* padding-right: 2rem; */
     }
 `;
 

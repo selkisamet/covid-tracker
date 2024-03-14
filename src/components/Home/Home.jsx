@@ -1,15 +1,17 @@
-import React from "react";
+import React, { Fragment } from "react";
 import TabBar from "../UI/TabBar/TabBar";
-import Container from "../UI/Container/Container";
 import TabContent from "../UI/TabContent/TabContent";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     return (
-        <Container>
+        <Fragment>
             {/* TabBar Component */}
             < TabBar />
+
+            {/* TabContent Component */}
             <TabContent selectedItem="map" />
-        </Container>
+        </Fragment>
     )
 }
 

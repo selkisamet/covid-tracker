@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import data from "../../../data.json";
 import IconCancel from "../../../assets/icons/cancel.svg";
 import { MapWrapStyle, HoverBoxStyle, DetailBoxStyle, DetailButtonStyle, DetailCancelButtonStyle, IconCancelStyle } from "./WorldMapStyle";
+import { Link } from "react-router-dom";
+import Modal from "../../UI/Modal/Modal";
 
 const WorldMap = () => {
     const [selectedCountryCode, setSelectedCountryCode] = useState(null);
@@ -9,6 +11,7 @@ const WorldMap = () => {
     const [mousePosition, setMousePosition] = useState({ x: null, y: null });
     const [detailButtonPosition, setDetailButtonPosition] = useState({ x: null, y: null });
     const [showDetailButton, setShowDetailButton] = useState(false);
+    const [modal, setModal] = useState(false);
     const svgRef = useRef(null);
 
     const handleSelectedCountry = (value) => {
@@ -56,6 +59,7 @@ const WorldMap = () => {
                 preserveAspectRatio="xMidYMid meet"
             >
                 {data.map((country, index) => (
+
                     <g key={index} onClick={() => handleSelectedCountry(country)}>
                         <path
                             id={country.id}
@@ -67,6 +71,7 @@ const WorldMap = () => {
                             onMouseEnter={() => setHoveredCountry(country.title)}
                             onMouseLeave={() => setHoveredCountry(null)}
                             onContextMenu={(e) => handleContextMenu(e, country)}
+                            onClick={() => setModal(true)}
                         />
                     </g>
                 ))}
@@ -74,7 +79,9 @@ const WorldMap = () => {
 
             {showDetailButton && (
                 <DetailBoxStyle style={{ top: detailButtonPosition.y, left: detailButtonPosition.x }}>
-                    <DetailButtonStyle onClick={(e) => handleDetailButtonClick(e, data.find(item => item.id === selectedCountryCode))}>Ülke Detayı</DetailButtonStyle>
+                    <Link to="/country-details">
+                        <DetailButtonStyle onClick={(e) => handleDetailButtonClick(e, data.find(item => item.id === selectedCountryCode))}>Ülke Detayı</DetailButtonStyle>
+                    </Link>
 
                     <DetailCancelButtonStyle onClick={handleCancelDetailButtonClick}>
                         <IconCancelStyle src={IconCancel}></IconCancelStyle>
@@ -90,6 +97,11 @@ const WorldMap = () => {
                     </HoverBoxStyle>
                 )
             }
+
+            {
+                modal && <Modal setModal={setModal} />
+            }
+
         </MapWrapStyle >
     )
 }
