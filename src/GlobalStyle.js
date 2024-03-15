@@ -10,6 +10,7 @@ export const theme = {
         sixth: "#26315E",
         seventh: "#323E6D",
         eighth: "#636D95",
+        ninth: "#5E6684",
         white: "#ffffff",
     },
     fonts: {
@@ -38,7 +39,7 @@ export const GlobalStyle = createGlobalStyle`
     body{
         font-family: ${({ theme }) => theme.fonts.primary};
         background-color: ${({ theme }) => theme.colors.third};
-        font-weight: ${({ theme }) => theme.fontWeights.medium};
+        font-weight: ${({ theme }) => theme.fontWeights.regular};
         font-size: 1.6rem;
     }
 `;

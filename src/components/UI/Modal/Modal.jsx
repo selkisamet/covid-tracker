@@ -1,7 +1,6 @@
 import React from "react";
 import IconCancel from "../../../assets/icons/cancel.svg";
-import { ModalStyle, OverlayStyle, ModalHeaderStyle, IconModalCancelStyle } from "./ModalStyle";
-import styled from "styled-components";
+import { ModalStyle, OverlayStyle, ModalHeaderStyle, IconModalCancelStyle, ModalBodyStyle, RowItemStyle, RowColStyle } from "./ModalStyle";
 
 const Modal = ({ setModal }) => {
 
@@ -56,35 +55,3 @@ const Modal = ({ setModal }) => {
 }
 
 export default Modal;
-
-const ModalBodyStyle = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding: 0 clamp(1rem , 5vw, 5rem);
-    margin-top: 5rem;
-`;
-
-const RowItemStyle = styled.div`
-    display: flex;
-    gap: 3rem;
-    padding: 3rem 0;
-    border-bottom: solid 0.1rem ${({ theme }) => theme.colors.primary};
-
-    &:last-child {
-        border: none;
-    }
-`;
-
-const RowColStyle = styled.div`
-    color: ${({ theme }) => theme.colors.white};
-    flex: 1;
-    font-weight: ${({ theme }) => theme.fontWeights.light};
-    font-size: clamp(1.6rem, 2vw, 1.6rem);
-
-    &:first-child {
-        text-align: right;
-        flex: 1;
-        font-weight: ${({ theme }) => theme.fontWeights.medium};
-        white-space: nowrap;
-    }
-`;
