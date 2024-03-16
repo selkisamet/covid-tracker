@@ -4,8 +4,7 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import ActionTypes from "../actionTypes";
 import { setModalData, setModalLoading } from "../actions/modalAction";
 
-function* 
-(action) {
+function* fetchModalDataAsync(action) {
     try {
         const { selectedCountryCode } = action.payload;
         const url = `https://covid-19-statistics.p.rapidapi.com/reports?iso=${selectedCountryCode}`;
