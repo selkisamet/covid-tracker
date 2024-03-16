@@ -5,7 +5,7 @@ const Container = ({ children }) => {
     return (
         <ContainerStyle>
             {children}
-        </ContainerStyle>
+        </ContainerStyle >
     )
 }
 

@@ -1,8 +1,10 @@
+import { combineReducers } from 'redux';
 import tabReducer from "./tabReducer";
-import { combineReducers } from "redux";
+import modalReducer from './modalReducer';
 
-const reducers = combineReducers({
-    tabReducer
+const rootReducer = combineReducers({
+    tabReducer,
+    modal: modalReducer,
 });
 
-export default reducers;
+export default rootReducer;

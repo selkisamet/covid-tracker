@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const ListWrapStyle = styled.div`
@@ -87,7 +88,6 @@ export const HeadItemStyle = styled.div`
 
        &:first-child{
         flex: 0.7;
-        /* padding-right: 2rem; */
     }
 `;
 
@@ -115,6 +115,10 @@ export const RowColStyle = styled.div`
         flex: 0.7;
         /* padding-right: 2rem; */
     }
+`;
+
+export const LinkStyle = styled(Link)`
+    text-decoration: none;
 `;
 
 export const FlagStyle = styled.img`

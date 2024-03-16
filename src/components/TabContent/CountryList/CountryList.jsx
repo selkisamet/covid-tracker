@@ -1,7 +1,7 @@
 import React from "react";
 import IconSearch from "../../../assets/icons/search.svg";
 import TurkeyFlag from "../../../assets/Turkey.svg";
-import { ListWrapStyle, ListCardStyle, SearchWrap, InputWrapStyle, InputStyle, IconSearchStyle, TableWrapStyle, TableBodyStyle, TableHeaderStyle, HeadItemStyle, RowItemStyle, RowColStyle, FlagStyle } from "./CountryListStyle";
+import { ListWrapStyle, ListCardStyle, SearchWrap, InputWrapStyle, InputStyle, IconSearchStyle, TableWrapStyle, TableBodyStyle, TableHeaderStyle, HeadItemStyle, RowItemStyle, RowColStyle, LinkStyle, FlagStyle } from "./CountryListStyle";
 
 const CountryList = () => {
     return (
@@ -24,13 +24,15 @@ const CountryList = () => {
                     </TableHeaderStyle>
 
                     <TableBodyStyle>
-                        <RowItemStyle>
-                            <RowColStyle><FlagStyle src={TurkeyFlag}></FlagStyle></RowColStyle>
-                            <RowColStyle>1</RowColStyle>
-                            <RowColStyle>Türkiye</RowColStyle>
-                            <RowColStyle>83.614.362</RowColStyle>
-                            <RowColStyle>5.000.000</RowColStyle>
-                        </RowItemStyle>
+                        <LinkStyle to="/country-details">
+                            <RowItemStyle>
+                                <RowColStyle><FlagStyle src={TurkeyFlag}></FlagStyle></RowColStyle>
+                                <RowColStyle>1</RowColStyle>
+                                <RowColStyle>Türkiye</RowColStyle>
+                                <RowColStyle>83.614.362</RowColStyle>
+                                <RowColStyle>5.000.000</RowColStyle>
+                            </RowItemStyle>
+                        </LinkStyle>
 
                         <RowItemStyle>
                             <RowColStyle><FlagStyle src={TurkeyFlag}></FlagStyle></RowColStyle>

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import data from "../../../data.json";
 import IconCancel from "../../../assets/icons/cancel.svg";
 import { MapWrapStyle, HoverBoxStyle, DetailBoxStyle, DetailButtonStyle, DetailCancelButtonStyle, IconCancelStyle } from "./WorldMapStyle";
@@ -17,6 +17,7 @@ const WorldMap = () => {
     const handleSelectedCountry = (value) => {
         const countryCode = value.id;
         setSelectedCountryCode(countryCode);
+        setModal(true);
     };
 
     const handleMouseMove = (e) => {
@@ -52,57 +53,61 @@ const WorldMap = () => {
 
 
     return (
-        <MapWrapStyle onMouseMove={handleMouseMove}>
-            <svg
-                ref={svgRef}
-                viewBox="0 0 1009.6727 665.96301"
-                preserveAspectRatio="xMidYMid meet"
-            >
-                {data.map((country, index) => (
+        <Fragment>
+            <MapWrapStyle onMouseMove={handleMouseMove}>
+                <svg
+                    ref={svgRef}
+                    viewBox="0 0 1009.6727 665.96301"
+                    preserveAspectRatio="xMidYMid meet"
+                >
+                    {data.map((country, index) => (
 
-                    <g key={index} onClick={() => handleSelectedCountry(country)}>
-                        <path
-                            id={country.id}
-                            title={country.title}
-                            d={country.d}
-                            style={hoveredCountry ? { fill: hoveredCountry === country.title ? "#C3B8FF" : "#9384DE", cursor: "pointer" } : { fill: selectedCountryCode === country.id ? "#C3B8FF" : "#9384DE", cursor: "pointer" }}
-                            stroke="#091236"
-                            strokeWidth="1"
-                            onMouseEnter={() => setHoveredCountry(country.title)}
-                            onMouseLeave={() => setHoveredCountry(null)}
-                            onContextMenu={(e) => handleContextMenu(e, country)}
-                            onClick={() => setModal(true)}
-                        />
-                    </g>
-                ))}
-            </svg>
+                        <g key={index} onClick={() => handleSelectedCountry(country)}>
+                            <path
+                                id={country.id}
+                                title={country.title}
+                                d={country.d}
+                                style={hoveredCountry ? { fill: hoveredCountry === country.title ? "#C3B8FF" : "#9384DE", cursor: "pointer" } : { fill: selectedCountryCode === country.id ? "#C3B8FF" : "#9384DE", cursor: "pointer" }}
+                                stroke="#091236"
+                                strokeWidth="1"
+                                onMouseEnter={() => setHoveredCountry(country.title)}
+                                onMouseLeave={() => setHoveredCountry(null)}
+                                onContextMenu={(e) => handleContextMenu(e, country)}
+                            />
+                        </g>
+                    ))}
+                </svg>
 
-            {showDetailButton && (
-                <DetailBoxStyle style={{ top: detailButtonPosition.y, left: detailButtonPosition.x }}>
-                    <Link to="/country-details">
+                {showDetailButton && (
+                    <DetailBoxStyle style={{ top: detailButtonPosition.y, left: detailButtonPosition.x }}>
+                        {/* <Link to="/country-details"> */}
                         <DetailButtonStyle onClick={(e) => handleDetailButtonClick(e, data.find(item => item.id === selectedCountryCode))}>Ülke Detayı</DetailButtonStyle>
-                    </Link>
+                        {/* </Link> */}
 
-                    <DetailCancelButtonStyle onClick={handleCancelDetailButtonClick}>
-                        <IconCancelStyle src={IconCancel}></IconCancelStyle>
-                    </DetailCancelButtonStyle>
-                </DetailBoxStyle>
-            )
-            }
-
-            {
-                hoveredCountry && (
-                    <HoverBoxStyle style={{ left: mousePosition.x, top: mousePosition.y }}>
-                        {hoveredCountry}
-                    </HoverBoxStyle>
+                        <DetailCancelButtonStyle onClick={handleCancelDetailButtonClick}>
+                            <IconCancelStyle src={IconCancel}></IconCancelStyle>
+                        </DetailCancelButtonStyle>
+                    </DetailBoxStyle>
                 )
-            }
+                }
+
+                {
+                    hoveredCountry && (
+                        <HoverBoxStyle style={{ left: mousePosition.x, top: mousePosition.y }}>
+                            {hoveredCountry}
+                        </HoverBoxStyle>
+                    )
+                }
+
+
+
+            </MapWrapStyle >
 
             {
-                modal && <Modal setModal={setModal} />
+                modal && <Modal setModal={setModal} selectedCountryCode={selectedCountryCode} />
             }
+        </Fragment>
 
-        </MapWrapStyle >
     )
 }
 

@@ -4,11 +4,15 @@ export const ModalStyle = styled.div`
     position: absolute;
     max-width: clamp(90rem, 5vw, 90rem);
     width: 100%;
-    top: 0;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -50%);
     z-index: 1;
     padding: 2rem;
+
+    @media screen and (max-width: 768px){
+        width: 90%;
+    }
 `;
 
 export const OverlayStyle = styled.div`

@@ -1,0 +1,3 @@
+export const FETCH_MODAL_DATA = 'FETCH_MODAL_DATA';
+export const SET_MODAL_DATA = 'SET_MODAL_DATA';
+export const SET_MODAL_LOADING = 'SET_MODAL_LOADING';
