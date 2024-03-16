@@ -5,26 +5,31 @@ import styled from "styled-components";
 import Loader from "../../../assets/icons/loader.gif";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchModalData } from "../../../redux/actions/modalAction";
+import Actions from "../../../redux/actions";
 
-const Modal = ({ setModal, selectedCountryCode, }) => {
-    const dispatch = useDispatch();
+const Modal = ({ selectedCountryCode, }) => {
     const modalData = useSelector((state) => state.modal.modalData);
     const loading = useSelector((state) => state.modal.loading);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchModalData(selectedCountryCode));
     }, [dispatch, selectedCountryCode]);
 
+    const modalClose = () => {
+        dispatch(Actions.modalAction.isOpenModal(false));
+        dispatch(Actions.modalAction.setModalData({}));
+    }
 
-    const { date, last_update, confirmed, active, recovered, deaths, region } = modalData;
-    let regionName = "";
-    region && region.name ? regionName = region.name : "";
+    const { date, last_update, confirmed, active, recovered, deaths, region } = modalData || {};
+    const regionName = region?.name || "";
+
 
     return (
         <ModalStyle>
             <ModalHeaderStyle>
                 {regionName}
-                <IconModalCancelStyle src={IconCancel} onClick={() => setModal(false)}></IconModalCancelStyle>
+                <IconModalCancelStyle src={IconCancel} onClick={() => modalClose()}></IconModalCancelStyle>
             </ModalHeaderStyle>
 
             <ModalBodyStyle>
@@ -75,7 +80,6 @@ const Modal = ({ setModal, selectedCountryCode, }) => {
 export default Modal;
 
 const LoaderOverlayStyle = styled.div`
-    position: relative;
     background-color: rgba(147, 132, 222, 0.3);
     position: absolute;
     top: 0;

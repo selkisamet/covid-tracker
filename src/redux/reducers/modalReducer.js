@@ -3,6 +3,7 @@ import ActionTypes from "../actionTypes";
 const initialState = {
     modalData: {},
     loading: true,
+    isOpen: false,
 };
 
 const modalReducer = (state = initialState, action) => {
@@ -16,6 +17,11 @@ const modalReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: action.payload.loading,
+            };
+        case ActionTypes.modal.IS_OPEN_MODAL:
+            return {
+                ...state,
+                isOpen: action.payload.isOpen,
             };
         default:
             return state;

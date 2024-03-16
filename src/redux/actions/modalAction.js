@@ -15,6 +15,11 @@ export const setModalLoading = (loading) => ({
     payload: { loading },
 });
 
-const modalAction = { fetchModalData, setModalData, setModalLoading };
+export const isOpenModal = (isOpen) => ({
+    type: ModalTypes.modal.IS_OPEN_MODAL,
+    payload: { isOpen },
+});
+
+const modalAction = { fetchModalData, setModalData, setModalLoading, isOpenModal };
 export default modalAction;
 

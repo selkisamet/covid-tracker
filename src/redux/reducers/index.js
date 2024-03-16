@@ -4,7 +4,7 @@ import modalReducer from './modalReducer';
 
 const rootReducer = combineReducers({
     tabReducer,
-    modal: modalReducer,
+    modal: modalReducer
 });
 
 export default rootReducer;

@@ -1,9 +1,10 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import data from "../../../data.json";
 import IconCancel from "../../../assets/icons/cancel.svg";
 import { MapWrapStyle, HoverBoxStyle, DetailBoxStyle, DetailButtonStyle, DetailCancelButtonStyle, IconCancelStyle } from "./WorldMapStyle";
-import { Link } from "react-router-dom";
 import Modal from "../../UI/Modal/Modal";
+import { useDispatch, useSelector } from "react-redux";
+import Actions from "../../../redux/actions";
 
 const WorldMap = () => {
     const [selectedCountryCode, setSelectedCountryCode] = useState(null);
@@ -11,13 +12,15 @@ const WorldMap = () => {
     const [mousePosition, setMousePosition] = useState({ x: null, y: null });
     const [detailButtonPosition, setDetailButtonPosition] = useState({ x: null, y: null });
     const [showDetailButton, setShowDetailButton] = useState(false);
-    const [modal, setModal] = useState(false);
     const svgRef = useRef(null);
+    const modal = useSelector((state) => state.modal.isOpen);
+    const dispatch = useDispatch();
 
     const handleSelectedCountry = (value) => {
         const countryCode = value.id;
         setSelectedCountryCode(countryCode);
-        setModal(true);
+        dispatch(Actions.modalAction.isOpenModal(true));
+        dispatch(Actions.modalAction.setModalLoading(true))
     };
 
     const handleMouseMove = (e) => {
@@ -104,7 +107,7 @@ const WorldMap = () => {
             </MapWrapStyle >
 
             {
-                modal && <Modal setModal={setModal} selectedCountryCode={selectedCountryCode} />
+                modal && <Modal selectedCountryCode={selectedCountryCode} />
             }
         </Fragment>
 
