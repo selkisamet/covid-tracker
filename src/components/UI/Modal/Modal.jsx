@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import IconCancel from "../../../assets/icons/cancel.svg";
-import { ModalStyle, OverlayStyle, ModalHeaderStyle, IconModalCancelStyle, ModalBodyStyle, RowItemStyle, RowColStyle } from "./ModalStyle";
+import { ModalStyle, OverlayStyle, ModalHeaderStyle, IconModalCancelStyle, ModalBodyStyle, RowItemStyle, RowColStyle, LoaderOverlayStyle } from "./ModalStyle";
 import styled from "styled-components";
-import Loader from "../../../assets/icons/loader.gif";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchModalData } from "../../../redux/actions/modalAction";
 import Actions from "../../../redux/actions";
+import Loader from "../Loader/Loader";
 
-const Modal = ({ selectedCountryCode, }) => {
+const Modal = () => {
     const modalData = useSelector((state) => state.modal.modalData);
     const loading = useSelector((state) => state.modal.loading);
+    const selectedCountryCode = useSelector((state) => state.country.countryCode);
     const dispatch = useDispatch();
+
+
 
     useEffect(() => {
         dispatch(fetchModalData(selectedCountryCode));
@@ -18,7 +21,9 @@ const Modal = ({ selectedCountryCode, }) => {
 
     const modalClose = () => {
         dispatch(Actions.modalAction.isOpenModal(false));
+        dispatch(Actions.modalAction.setModalLoading(true));
         dispatch(Actions.modalAction.setModalData({}));
+
     }
 
     const { date, last_update, confirmed, active, recovered, deaths, region } = modalData || {};
@@ -69,7 +74,7 @@ const Modal = ({ selectedCountryCode, }) => {
             {
                 loading && (
                     <LoaderOverlayStyle>
-                        <LoaderGifStyle src={Loader} />
+                        <Loader />
                     </LoaderOverlayStyle>
                 )
             }
@@ -78,22 +83,3 @@ const Modal = ({ selectedCountryCode, }) => {
 }
 
 export default Modal;
-
-const LoaderOverlayStyle = styled.div`
-    background-color: rgba(147, 132, 222, 0.3);
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    border-radius: 2rem;
-    backdrop-filter: blur(5rem);
-`;
-
-const LoaderGifStyle = styled.img`
-    width: 25rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-`;

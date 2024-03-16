@@ -1,26 +1,32 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import data from "../../../data.json";
 import IconCancel from "../../../assets/icons/cancel.svg";
 import { MapWrapStyle, HoverBoxStyle, DetailBoxStyle, DetailButtonStyle, DetailCancelButtonStyle, IconCancelStyle } from "./WorldMapStyle";
 import Modal from "../../UI/Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import Actions from "../../../redux/actions";
+import { Link } from "react-router-dom";
 
 const WorldMap = () => {
-    const [selectedCountryCode, setSelectedCountryCode] = useState(null);
     const [hoveredCountry, setHoveredCountry] = useState(null);
     const [mousePosition, setMousePosition] = useState({ x: null, y: null });
     const [detailButtonPosition, setDetailButtonPosition] = useState({ x: null, y: null });
     const [showDetailButton, setShowDetailButton] = useState(false);
     const svgRef = useRef(null);
     const modal = useSelector((state) => state.modal.isOpen);
+    const selectedCountryCode = useSelector((state) => state.country.countryCode);
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(Actions.modalAction.setModalData({}));
+        dispatch(Actions.modalAction.setModalLoading(true));
+    }, []);
+
     const handleSelectedCountry = (value) => {
-        const countryCode = value.id;
-        setSelectedCountryCode(countryCode);
+        const countryCode = value.alpha2;
         dispatch(Actions.modalAction.isOpenModal(true));
-        dispatch(Actions.modalAction.setModalLoading(true))
+        dispatch(Actions.modalAction.setModalLoading(true));
+        dispatch(Actions.countryAction.selectedCountryCode(countryCode))
     };
 
     const handleMouseMove = (e) => {
@@ -32,12 +38,6 @@ const WorldMap = () => {
         setMousePosition({ x: mouseX, y: mouseY });
     };
 
-    const handleDetailButtonClick = (e, country) => {
-        e.stopPropagation(); // Path tıklamasını engelle
-        console.log("Detay butonuna tıklandı:", country);
-        // Detay butonu tıklama işlemleri burada yapılabilir
-    };
-
     const handleContextMenu = (e, country) => {
         e.preventDefault();
         const svg = svgRef.current;
@@ -46,7 +46,7 @@ const WorldMap = () => {
         const mouseX = e.clientX - svgRect.left;
         const mouseY = e.clientY - svgRect.top;
         setDetailButtonPosition({ x: mouseX, y: mouseY });
-        setSelectedCountryCode(country.id);
+        dispatch(Actions.countryAction.selectedCountryCode(country.alpha2))
         setShowDetailButton(true);
     };
 
@@ -67,10 +67,10 @@ const WorldMap = () => {
 
                         <g key={index} onClick={() => handleSelectedCountry(country)}>
                             <path
-                                id={country.id}
+                                id={country.alpha2}
                                 title={country.title}
                                 d={country.d}
-                                style={hoveredCountry ? { fill: hoveredCountry === country.title ? "#C3B8FF" : "#9384DE", cursor: "pointer" } : { fill: selectedCountryCode === country.id ? "#C3B8FF" : "#9384DE", cursor: "pointer" }}
+                                style={hoveredCountry ? { fill: hoveredCountry === country.title ? "#C3B8FF" : "#9384DE", cursor: "pointer" } : { fill: selectedCountryCode === country.alpha2 ? "#C3B8FF" : "#9384DE", cursor: "pointer" }}
                                 stroke="#091236"
                                 strokeWidth="1"
                                 onMouseEnter={() => setHoveredCountry(country.title)}
@@ -83,9 +83,9 @@ const WorldMap = () => {
 
                 {showDetailButton && (
                     <DetailBoxStyle style={{ top: detailButtonPosition.y, left: detailButtonPosition.x }}>
-                        {/* <Link to="/country-details"> */}
-                        <DetailButtonStyle onClick={(e) => handleDetailButtonClick(e, data.find(item => item.id === selectedCountryCode))}>Ülke Detayı</DetailButtonStyle>
-                        {/* </Link> */}
+                        <Link to={`/country-details/${selectedCountryCode.toLowerCase()}`}>
+                            <DetailButtonStyle>Ülke Detayı</DetailButtonStyle>
+                        </Link>
 
                         <DetailCancelButtonStyle onClick={handleCancelDetailButtonClick}>
                             <IconCancelStyle src={IconCancel}></IconCancelStyle>
@@ -107,7 +107,7 @@ const WorldMap = () => {
             </MapWrapStyle >
 
             {
-                modal && <Modal selectedCountryCode={selectedCountryCode} />
+                modal && <Modal />
             }
         </Fragment>
 

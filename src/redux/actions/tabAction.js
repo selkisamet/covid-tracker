@@ -1,14 +1,14 @@
-import TabTypes from "../actionTypes";
+import ActionTypes from "../actionTypes";
 
 const map = (value = "map") => {
     return {
-        type: TabTypes.tab.MAP, payload: value
+        type: ActionTypes.tab.MAP, payload: value
     };
 };
 
 const list = (value = "list") => {
     return {
-        type: TabTypes.tab.LIST, payload: value
+        type: ActionTypes.tab.LIST, payload: value
     };
 };
 

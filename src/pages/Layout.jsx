@@ -20,7 +20,7 @@ const Layout = () => {
                     <Router>
                         <Routes>
                             <Route path="/" element={<HomePage />} />
-                            <Route path="/country-details" element={<CountryDetailsPage />} />
+                            <Route path="/country-details/:countryCode" element={<CountryDetailsPage />} />
                         </Routes>
                     </Router>
                 </Container>

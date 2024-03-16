@@ -26,6 +26,7 @@ export const FlagAndCountryStyle = styled.div`
 `;
 
 export const FlagStyle = styled.img`
+    width: clamp(6rem, 10vw, 10rem);
     box-shadow: 0 0 5rem 0 rgba(255, 255, 255, 0.5);
 `;
 

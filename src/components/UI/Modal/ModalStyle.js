@@ -76,3 +76,14 @@ export const RowColStyle = styled.div`
         white-space: nowrap;
     }
 `;
+
+export const LoaderOverlayStyle = styled.div`
+    background-color: rgba(147, 132, 222, 0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 2rem;
+    backdrop-filter: blur(5rem);
+`;
