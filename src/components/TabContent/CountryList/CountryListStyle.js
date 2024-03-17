@@ -55,12 +55,6 @@ export const IconSearchStyle = styled.img`
     position: absolute;
     top: 1.5rem;
     right: 2rem;
-    cursor: pointer;
-
-    &:hover{
-        transform: scale(1.1);
-        transition: all 0.2s ease;
-    }
 `;
 
 export const TableWrapStyle = styled.div`
@@ -110,6 +104,7 @@ export const RowColStyle = styled.div`
     flex: 1;
     text-align: center;
     font-weight: ${({ theme }) => theme.fontWeights.light};
+    font-size: clamp(1.2rem, 1.6vw, 1.6rem);
 
     &:first-child{
         flex: 0.7;
@@ -122,7 +117,15 @@ export const LinkStyle = styled(Link)`
 `;
 
 export const FlagStyle = styled.img`
-    width: 100%;
+    height: clamp(2rem, 10vw, 10rem);
+    width: clamp(2rem, 15vw, 15rem);
     display: block;
     object-fit: cover;
+`;
+
+export const MessageTextStyle = styled.div`
+    color: ${({ theme }) => theme.colors.white};
+    font-size: clamp(1.6rem, 2vw, 2rem);
+    font-weight: ${({ theme }) => theme.fontWeights.medium};
+    text-align: center;
 `;

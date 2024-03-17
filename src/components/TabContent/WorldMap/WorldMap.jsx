@@ -23,7 +23,7 @@ const WorldMap = () => {
     }, []);
 
     const handleSelectedCountry = (value) => {
-        const countryCode = value.alpha2;
+        const countryCode = value.alpha3;
         dispatch(Actions.modalAction.isOpenModal(true));
         dispatch(Actions.modalAction.setModalLoading(true));
         dispatch(Actions.countryAction.selectedCountryCode(countryCode))
@@ -46,7 +46,7 @@ const WorldMap = () => {
         const mouseX = e.clientX - svgRect.left;
         const mouseY = e.clientY - svgRect.top;
         setDetailButtonPosition({ x: mouseX, y: mouseY });
-        dispatch(Actions.countryAction.selectedCountryCode(country.alpha2))
+        dispatch(Actions.countryAction.selectedCountryCode(country.alpha3))
         setShowDetailButton(true);
     };
 
@@ -67,10 +67,10 @@ const WorldMap = () => {
 
                         <g key={index} onClick={() => handleSelectedCountry(country)}>
                             <path
-                                id={country.alpha2}
+                                id={country.alpha3}
                                 title={country.title}
                                 d={country.d}
-                                style={hoveredCountry ? { fill: hoveredCountry === country.title ? "#C3B8FF" : "#9384DE", cursor: "pointer" } : { fill: selectedCountryCode === country.alpha2 ? "#C3B8FF" : "#9384DE", cursor: "pointer" }}
+                                style={hoveredCountry ? { fill: hoveredCountry === country.title ? "#C3B8FF" : "#9384DE", cursor: "pointer" } : { fill: selectedCountryCode === country.alpha3 ? "#C3B8FF" : "#9384DE", cursor: "pointer" }}
                                 stroke="#091236"
                                 strokeWidth="1"
                                 onMouseEnter={() => setHoveredCountry(country.title)}

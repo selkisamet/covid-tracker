@@ -26,8 +26,10 @@ export const FlagAndCountryStyle = styled.div`
 `;
 
 export const FlagStyle = styled.img`
+height: clamp(4rem, 7vw, 7rem);
     width: clamp(6rem, 10vw, 10rem);
     box-shadow: 0 0 5rem 0 rgba(255, 255, 255, 0.5);
+    object-fit: cover;
 `;
 
 export const CountryNameStyle = styled.div`

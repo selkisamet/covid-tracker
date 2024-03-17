@@ -89,7 +89,7 @@ const CountryDetails = () => {
 
                 <RowItemStyle>
                     <RowColStyle>Kıta :</RowColStyle>
-                    <RowColStyle>{`${continents[1]} , ${continents[0]}`}</RowColStyle>
+                    <RowColStyle>{`${continents[1] ? continents[1] + "," : ""} ${continents[0]}`}</RowColStyle>
                 </RowItemStyle>
 
                 <RowItemStyle>
