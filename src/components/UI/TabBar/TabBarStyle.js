@@ -5,6 +5,12 @@ export const TabBarWrapStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    position: sticky;
+    top: 0;
+    padding: 1rem 0;
+    z-index: 1;
+    width: 100%;
+    background-color: ${({ theme }) => theme.colors.third};
 `;
 
 export const ItemWrapStyle = styled.div`

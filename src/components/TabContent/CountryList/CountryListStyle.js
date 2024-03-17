@@ -17,6 +17,7 @@ export const ListCardStyle = styled.div`
    display: flex;
    flex-direction: column;
    gap: 3rem;
+   position: relative;
 `;
 
 export const SearchWrap = styled.div`
@@ -24,6 +25,10 @@ export const SearchWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    position: sticky;
+    top: 15rem;
+    /* background-color: red; */
+    padding: 1rem 0;
 `;
 
 export const InputWrapStyle = styled.div`
@@ -33,7 +38,7 @@ export const InputWrapStyle = styled.div`
 export const InputStyle = styled.input`
     color: ${({ theme }) => theme.colors.primary};
     background-color: ${({ theme }) => theme.colors.seventh};
-    border: none;
+    border: solid 0.1rem ${({ theme }) => theme.colors.primary};
     border-radius: 5rem;
     height: clamp(4rem, 5vw, 5rem);
     width: 30rem;
@@ -42,7 +47,7 @@ export const InputStyle = styled.input`
     transition: all 0.2s ease;
 
     &:focus{
-       border: solid 0.1rem ${({ theme }) => theme.colors.primary};
+       border: solid 0.1rem ${({ theme }) => theme.colors.white};
     }
     
     &::placeholder{

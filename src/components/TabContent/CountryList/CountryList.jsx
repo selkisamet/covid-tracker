@@ -17,7 +17,6 @@ const CountryList = () => {
         country.translations["tur"]?.common.toLowerCase().includes(searchValue.toLowerCase())
     );
 
-
     useEffect(() => {
         dispatch(Actions.countryAction.fetchCountriesRequest());
         dispatch(Actions.modalAction.setModalLoading(true));

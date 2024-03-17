@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useRef, useState } from "react";
-import data from "../../../data.json";
+import data from "../../../countryData.json";
 import IconCancel from "../../../assets/icons/cancel.svg";
 import { MapWrapStyle, HoverBoxStyle, DetailBoxStyle, DetailButtonStyle, DetailCancelButtonStyle, IconCancelStyle } from "./WorldMapStyle";
 import Modal from "../../UI/Modal/Modal";
