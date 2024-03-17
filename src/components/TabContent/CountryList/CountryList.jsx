@@ -5,49 +5,35 @@ import { useDispatch, useSelector } from "react-redux";
 import Actions from "../../../redux/actions";
 
 const CountryList = () => {
-    const [countryList, setCountryList] = useState([]);
-    const [filteredCountryList, setFilteredCountryList] = useState([]);
-    const [searchValue, setSearchValue] = useState("");
+
     const [showWarning, setShowWarning] = useState(false);
     const tab = useSelector((state) => state.tabReducer);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        try {
-            fetch("https://restcountries.com/v3.1/all")
-                .then(response => {
-                    if (response.ok) {
-                        return response.json()
-                    }
-                }).then(data => {
-                    setCountryList(data);
-                    setFilteredCountryList(data);
-                }).catch(error => {
-                    console.error("Error fetching data: ", error);
-                })
-        } catch (error) {
-            console.log(error);
-        }
-    }, []);
+    const countryList = useSelector((state) => state.country.countryList);
+    const searchValue = useSelector((state) => state.country.searchValue);
+
+    const filteredCountryList = countryList.filter(country =>
+        country.translations["tur"]?.common.toLowerCase().includes(searchValue.toLowerCase())
+    );
+
 
     useEffect(() => {
-        // Arama değeri değiştikçe filtreleme yap
-        const filtered = countryList.filter(country =>
-            country.translations["tur"]?.common.toLowerCase().includes(searchValue.toLowerCase())
-        );
-        setFilteredCountryList(filtered);
-        setShowWarning(filtered.length === 0 && searchValue !== "");
-        dispatch(Actions.modalAction.setModalData({}));
-        dispatch(Actions.modalAction.isOpenModal(true));
+        dispatch(Actions.countryAction.fetchCountriesRequest());
         dispatch(Actions.modalAction.setModalLoading(true));
-    }, [searchValue, countryList]);
+        dispatch(Actions.modalAction.setModalData({}));
+    }, [dispatch]);
+
+    const handleInputChange = (e) => {
+        dispatch(Actions.countryAction.setSearchValue(e.target.value));
+    };
 
     return (
         <ListWrapStyle>
             <ListCardStyle>
                 <SearchWrap>
                     <InputWrapStyle>
-                        <InputStyle type="text" placeholder="Ülke Ara" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+                        <InputStyle type="text" placeholder="Ülke Ara" value={searchValue} onChange={handleInputChange} />
                         <IconSearchStyle src={IconSearch} />
                     </InputWrapStyle>
                 </SearchWrap>
