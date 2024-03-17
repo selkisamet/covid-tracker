@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import IconCancel from "../../../assets/icons/cancel.svg";
 import { ModalStyle, OverlayStyle, ModalHeaderStyle, IconModalCancelStyle, ModalBodyStyle, RowItemStyle, RowColStyle, LoaderOverlayStyle } from "./ModalStyle";
-import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchModalData } from "../../../redux/actions/modalAction";
 import Actions from "../../../redux/actions";
@@ -10,14 +9,14 @@ import Loader from "../Loader/Loader";
 const Modal = () => {
     const modalData = useSelector((state) => state.modal.modalData);
     const loading = useSelector((state) => state.modal.loading);
-    const selectedCountryCode = useSelector((state) => state.country.countryCode);
+    const fetchCountryInfo = useSelector((state) => state.country.countryCode);
     const dispatch = useDispatch();
 
 
 
     useEffect(() => {
-        dispatch(fetchModalData(selectedCountryCode));
-    }, [dispatch, selectedCountryCode]);
+        dispatch(fetchModalData(fetchCountryInfo));
+    }, [dispatch, fetchCountryInfo]);
 
     const modalClose = () => {
         dispatch(Actions.modalAction.isOpenModal(false));

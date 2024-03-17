@@ -5,6 +5,11 @@ export const selectedCountryCode = (countryCode) => ({
     payload: { countryCode },
 });
 
-const countryAction = { selectedCountryCode };
+export const setCountryInfo = (countryInfo) => ({
+    type: CountryTypes.country.SET_COUNTRY_INFO,
+    payload: { countryInfo },
+});
+
+const countryAction = { selectedCountryCode, setCountryInfo };
 export default countryAction;
 

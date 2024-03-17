@@ -6,8 +6,8 @@ import { setModalData, setModalLoading } from "../actions/modalAction";
 
 function* fetchModalDataAsync(action) {
     try {
-        const { selectedCountryCode } = action.payload;
-        const url = `https://covid-19-statistics.p.rapidapi.com/reports?iso=${selectedCountryCode}`;
+        const { fetchCountryInfo } = action.payload;
+        const url = `https://covid-19-statistics.p.rapidapi.com/reports?iso=${fetchCountryInfo}`;
         const options = {
             method: "GET",
             headers: {

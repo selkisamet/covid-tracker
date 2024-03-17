@@ -1,8 +1,8 @@
 import ModalTypes from "../actionTypes";
 
-export const fetchModalData = (selectedCountryCode) => ({
+export const fetchModalData = (fetchCountryInfo) => ({
     type: ModalTypes.modal.FETCH_MODAL_DATA,
-    payload: { selectedCountryCode },
+    payload: { fetchCountryInfo },
 });
 
 export const setModalData = (modalData) => ({
