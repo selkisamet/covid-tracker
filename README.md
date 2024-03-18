@@ -1,7 +1,7 @@
 
 # Covid Tracker
 
-Uygulamanın amacı, dünyadaki tüm ülkelerin covid verilerini kullanıcıya kolay bir şekilde sunmaktır. Ülkelere Harita üzerinden ve liste üzerinden ulaşılabilir.
+Uygulamanın amacı, Dünyadaki tüm ülkelerin covid verilerini kullanıcıya kolay bir şekilde sunmaktır. Ülkelere Harita üzerinden ve liste üzerinden ulaşılabilir.
 
 #### Kullanım
 
@@ -48,6 +48,6 @@ Covid Tracker uygulaması'nın kurulumu için aşağıdaki adımları takip edeb
   ```bash
  docker run -p 3000:3000 covid-tracker-image
 ```
-#### Uygulamanın TarayıcıdaGörüntülenmesi
+#### Uygulamanın Tarayıcıda Görüntülenmesi
 
 [localhost:3000](http://localhost:3000)
