@@ -10,6 +10,9 @@ Harita sekmesinde, harita üzerindeki ülkelere tıklayarak, ilgili ülkenin cov
 ## Demo
 https://covid-tracker-jet-six.vercel.app/
 
+## Adobe XD Tasarım Linki
+https://xd.adobe.com/view/4eb4b456-4deb-41a7-a7bc-6f2bce31abe0-1be7/
+
 ## Kurulum
 Covid Tracker uygulaması'nın kurulumu için aşağıdaki adımları takip edebilirsiniz.
 
