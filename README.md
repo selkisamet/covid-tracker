@@ -1,35 +1,53 @@
 
 # Covid Tracker
 
-Harita sekmesi altındaki harita üzerindeki ülkelere tıklayarak, ilgili ülkenin covid verileri açılan modalda görüntülenebilir. Ülke, detayları ile birlikte görüntülenmek isteniyorsa ülke üzerine sağ tıklayıp ülke detayına tıklanarak ülke datayları ve covid verilerinin bulunduğu sayfaya gidilebilir.
+Uygulamanın amacı, dünyadaki tüm ülkelerin covid verilerini kullanıcıya kolay bir şekilde sunmaktır. Ülkelere Harita üzerinden ve liste üzerinden ulaşılabilir.
 
-Listeden ülkelere ulaşmak için ise liste sekmesi kullanılabilir. Tüm ülkeler görüntülenir veya filtrelenebilir.
+#### Kullanım
 
+Harita sekmesinde, harita üzerindeki ülkelere tıklayarak, ilgili ülkenin covid verileri açılan modalda görüntülenebilir. Ülke, detayları ile birlikte görüntülenmek isteniyorsa, harita üzerinde ülkeye sağ tıklayıp ülke detayı butonuna tıklanayarak ülke datayları ve covid verilerinin bulunduğu sayfaya gidilebilir. Listeden ülkelere ulaşmak için ise liste sekmesi kullanılabilir. Tüm ülkeler görüntülenir veya filtrelenebilir.
 
-## Vite
+## Demo
+https://covid-tracker-jet-six.vercel.app/
 
+## Kurulum
+Covid Tracker uygulaması'nın kurulumu için aşağıdaki adımları takip edebilirsiniz.
+
+#### Vite'nin Global Olarak kurulması
 
 ```bash
  npm install -g create-vite
 ```
 
-  ## Bağımlılıklar
+#### Projenin Kopyalanması
+
+```bash
+ git clone https://github.com/selkisamet/covid-tracker.git
+```
+
+#### Proje Dizini
+
+```bash
+ cd covid-tracker
+```
+
+  #### Bağımlılıkların Yüklenmesi
 
   ```bash
  npm install
 ```
 
-  ## Projeyi Başlat
+  #### Projenin Başlatılması
 
   ```bash
  npm run dev
 ```
 
-  ## veya
+  #### Projenin Docker ile Başlatılması
 
   ```bash
  docker run -p 3000:3000 covid-tracker-image
 ```
-## Görüntüle
-## http://localhost:3000/
+#### Uygulamanın TarayıcıdaGörüntülenmesi
 
+[localhost:3000](http://localhost:3000)
