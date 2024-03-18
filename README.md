@@ -1,7 +1,7 @@
 # React + Vite Kurulum
 
-Wrb sitesi
+Wrb sitesi <br>
 https://vitejs.dev/
 
-Npm ile kulumu
+Npm ile kulumu <br>
 npm i vite
